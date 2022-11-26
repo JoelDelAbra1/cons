@@ -23,7 +23,8 @@ include("conexion.php");
 $id_empleado= $_POST['id_empleado'];
         $nombre_empleado = $_POST['nombre_empleado'];
     ////////////////////////////no jalaaa
-        $sql="update empleados set nombre_empleado='".$nombre_empleado."',apellido_paterno='".$apellido_paterno."' where id_empleado='".$id_empleado."'";
+        $sql="update empleados set nombre_empleado='".$nombre_empleado."',
+        apellido_paterno='".$apellido_paterno."' where id_empleado='".$id_empleado."'";
         $resultado = mysqli_query($conexion,$sql);
         if($resultado){
             echo" <script languaje = 'JavaScript'>
