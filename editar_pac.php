@@ -23,7 +23,8 @@ include("conexion.php");
 $Id_paciente= $_POST['Id_paciente'];
         $nombre_paciente = $_POST['nombre_paciente'];
     ////////////////////////////no jalaaa
-        $sql="update paciente set nombre_paciente='".$nombre_paciente."',Apellido_paterno='".$Apellido_paterno."' where Id_paciente='".$Id_paciente."'";
+        $sql="update paciente set nombre_paciente='".$nombre_paciente."',
+        Apellido_paterno='".$Apellido_paterno."' where Id_paciente='".$Id_paciente."'";
         $resultado = mysqli_query($conexion,$sql);
         if($resultado){
             echo" <script languaje = 'JavaScript'>
