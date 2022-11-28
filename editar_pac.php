@@ -14,17 +14,16 @@ include("conexion.php");
 <body>
     <?php
     if(isset($_POST['enviar'])){
-        
+        $nombre_paciente = $_POST['nombre_paciente'];
         $Apellido_paterno = $_POST['Apellido_paterno'];
         $Apellido_materno = $_POST['Apellido_materno'];
         $colonia_paciente = $_POST['colonia_paciente'];
         $calle_paciente = $_POST['calle_paciente'];
         $Telefono_paciente = $_POST['Telefono_paciente'];
 $Id_paciente= $_POST['Id_paciente'];
-        $nombre_paciente = $_POST['nombre_paciente'];
+      
     ////////////////////////////no jalaaa
-        $sql="update paciente set nombre_paciente='".$nombre_paciente."',
-        Apellido_paterno='".$Apellido_paterno."' where Id_paciente='".$Id_paciente."'";
+        $sql="update paciente set nombre_paciente='".$nombre_paciente."',Apellido_paterno='".$Apellido_paterno."' where Id_paciente='".$Id_paciente."'";
         $resultado = mysqli_query($conexion,$sql);
         if($resultado){
             echo" <script languaje = 'JavaScript'>
@@ -68,9 +67,9 @@ $Id_paciente= $_POST['Id_paciente'];
         <input type="text" name="Telefono_paciente" placeholder="Teléfono" value="<?php echo $Telefono_paciente; ?>"> <br>
         <button type="submit" name="enviar">Enviar</button>
         <a href="index.php">Regresar</a>
-    </form>
+        </form>
     <?php
     } 
-    ?>
+    ?> 
 </body>
 </html>

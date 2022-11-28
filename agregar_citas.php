@@ -1,3 +1,6 @@
+<?php
+include("conexion.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,16 +15,15 @@
     if(isset($_POST['enviar'])){ //presiona el boton
         include("conexion.php");    
         
-        $id_cita = $_POST['id_cita'];
-        $id_doctor = $_POST['id_doctor'];
+        $id_doctor = $_POST['doctor'];
         $id_paciente = $_POST['id_paciente'];
         $hora_cita = $_POST['hora_cita'];
         $fecha_cita = $_POST['fecha_cita'];
-        $estado_cita = $_POST['estado_cita'];
         
-        $sql="INSERT INTO cita(id_cita,id_doctor,id_paciente,hora_cita,fecha_cita,estado_cita) 
-        VALUES ('$id_cita', '$id_doctor', '$id_paciente'
-        , '$hora_cita', '$fecha_cita','$estado_cita')";
+        
+        $sql="INSERT INTO cita(id_doctor,id_paciente,hora_cita,fecha_cita) 
+        VALUES ( '$id_doctor', '$id_paciente'
+        , '$hora_cita', '$fecha_cita')";
         $resultado = mysqli_query($conexion,$sql);
         if($resultado){
             echo" <script languaje = 'JavaScript'>
@@ -36,34 +38,42 @@
         }
         mysqli_close($conexion);
     }else{
+        $id_paciente=$_GET['Id_paciente'];
+        $sql="select * from paciente where id_paciente = '".$id_paciente."'";
+        $resultado = mysqli_query($conexion,$sql);
 
+        $fila= mysqli_fetch_assoc($resultado);
+        $id_paciente= $fila["id_paciente"];
+        $nombre_paciente= $fila["nombre_paciente"];
+        $Apellido_paterno=$fila["apellido_paterno"];
+        $Apellido_materno=$fila["apellido_materno"];
+        mysqli_close($conexion);
     }
     ?>
 <form action="" method="POST">
-        <input type="text" name="nombre_paciente" placeholder="Nombre">
-        <input type="text" name="Apellido_paterno" placeholder="Apellido paterno">
-        <input type="text" name="Apellido_materno" placeholder="Apellido Materno">
-        <input  type="text" name="doctor" placeholder="Doctor">
+        <input type="hidden" name="id_paciente" value="<?php echo $id_paciente; ?>">
+      <input type="text" readonly name="nombre_paciente" value="<?php echo $nombre_paciente; ?>">
+      <input type="text" readonly name="apellido_paterno" value="<?php echo $Apellido_paterno; ?>">
+      <input type="text" readonly name="apellido_materno" value="<?php echo $Apellido_materno; ?>">
         <input type="time" name="hora_cita" placeholder="Hora_cita">
-        <input type="date" name="fecha_cita" placeholder="Hecha_cita" >
-        <input type="text" name="id_cita" placeholder="Id cita" style="visibility:none;" >
-        <option value="0">Selecciones</option>
-        <select name="doctor" class="form-control" >
+        <input type="date" name="fecha_cita" placeholder="Fecha_cita" >
+        <select name="doctor" id="">
         <?php
         include("conexion.php");
-        $sql="SELECT doctor.id_doctor, concat(empleados.nombre_empleado,' ',empleados.apellido_paterno) as nombre_doc from empleados
-        INNER join doctor on empleados.id_empleado=doctor.id_empleado;";
+        $sql="select doctor.id_doctor,concat(empleados.nombre_empleado,'  ',empleados.apellido_paterno,' ',empleados.telefono_empleado) as doctor FROM doctor
+        INNER JOIN empleados on doctor.id_empleado=empleados.id_empleado ";
         $resultado=mysqli_query($conexion,$sql);
-
-        while($filas=mysqli_fetch_array($resultado)){
-            $id_doctor = $fila['id_doctor'];
-            $nombre_doctor = $fila['nombre_doctor'];
-            ?>
-            <option value="<?php echo $id_doctor;?>"><?php echo $nombre_doctor ?></option> 
-            <?php // como se guarda y lo que se muestra
+        while($row=mysqli_fetch_array($resultado)){
+           // $id_empleado=$row['id_empleado'];
+            $doctor=$row['doctor'];
+            $id_doctor=$row['id_doctor'];
+        ?>
+        <option value="<?php echo $id_doctor;?>"><?php echo $doctor;?></option>
+        <?php
         }
         ?>
-        </select>
+       </select>
+    
         <button type="submit" name="enviar">Enviar</button>
         <a href="index.php">Regresar</a>
 </body>

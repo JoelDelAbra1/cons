@@ -36,7 +36,7 @@ table {
     text-align: center;
   }
   
-  input[type=text], select {
+  input[type=text], input[type=tel], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

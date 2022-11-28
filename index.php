@@ -108,6 +108,8 @@
             <?php echo "<a href=editar_pac.php?Id_paciente=".$filas['Id_paciente']."'>Editar</a>"; ?>
                 --
                 <?php echo "<a href='eliminar_pac.php?Id_paciente=".$filas['Id_paciente']."'>Eliminar</a>"; ?>
+                --
+                <?php echo "<a href='agregar_citas.php?Id_paciente=".$filas['Id_paciente']."'>Agendar Cita</a>"; ?>
             </td>
         </tr>
         <?php
@@ -116,6 +118,5 @@
         ?>
       </tbody>
     </table>
-   <h1> <a href="paciente/editar_pac.php">to</a></h1>
 </body>
 </html>

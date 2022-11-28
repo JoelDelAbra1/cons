@@ -37,7 +37,8 @@
             <td>
                 <a href="index_citas.php">Mostrar todos</a>
             </td>
-            <td><a href="agregar_citas.php">Nuevo</a></td>
+           
+            
         </tr>
         <tr></tr>
         <tr></tr>
@@ -104,7 +105,7 @@
     <?php
             }
         }else{  ///Asi se mostrara cuando entre o le de al boton de mostrar todos
-            $sql="SELECT * from v_citas";
+            $sql="select * from v_citas";
             $resultado=mysqli_query($conexion,$sql);
             while($filas=mysqli_fetch_assoc($resultado)){
         ?>
@@ -120,6 +121,8 @@
             <?php echo "<a href='editar_cita.php?id_cita=".$filas['id_cita']."'>Editar</a>"; ?>
                 --
                 <?php echo "<a href='eliminar_cita.php?id_cita=".$filas['id_cita']."'>Eliminar</a>"; ?>
+                --
+                <?php echo "<a href='agregar_receta.php?id_cita=".$filas['id_cita']."'>Generar Receta</a>"; ?>
             </td>
         </tr>
         <?php
