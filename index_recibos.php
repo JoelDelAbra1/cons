@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recetas</title>
+    <title>Recibos</title>
     <script type="text/javascript">
         function confirmar(){
             return confirm('Estas seguro de eliminar');
@@ -21,12 +21,12 @@
     <table>
         <tr><a href="index.php">Regresar</a></tr>
         <tr>
-            <th colspan="4"><h1>Recetas</h1></th>
+            <th colspan="4"><h1>Recibos</h1></th>
         </tr>
         <tr>
             <td>
                 <label for="">Id:</label>
-                <input type="text" name = 'id_cita'>
+                <input type="text" name="id_recibo">
             </td>
             <td>
                 <label for="">Nombre:</label>
@@ -36,7 +36,7 @@
                 <input type="submit" name="enviar" value =  "BUSCAR">
             </td>
             <td>
-                <a href="index_recetas.php">Mostrar todos</a>
+                <a href="index_recibos.php">Mostrar todos</a>
             </td>
            
             
@@ -55,7 +55,7 @@
             <th>Telefono</th>
             <th>Fecha</th>
             <th>Hora</th>
-            <th>Doctor</th>
+            <th>Costo</th>
             <th>Sucursal</th>
             <th>Acciones</th>
         </tr>
@@ -63,25 +63,25 @@
       <tbody>
         <?php
         if(isset($_POST['enviar'])){
-            $id_cita = $_POST['id_cita'];
+            $id_recibo = $_POST['id_recibo'];
             $nombre = $_POST['nombre'];
             //$apellidos = $_POST['apellidos'];
 
-            if(empty($_POST['id_cita']) && empty($_POST['nombre'])){ /////Busqueda
+            if(empty($_POST['id_recibo']) && empty($_POST['nombre'])){ /////Busqueda
                 echo "<script languaje = 'Javascript'>
                 alert('Ingresa el nombre o el apellido');
-                location.assign('index_emp.php');
+                location.assign('index_recibos.php');
                 </script>
                 ";
             }else {
                 if (empty($_POST['nombre'])) {
-                    $sql="SELECT * FROM v_citas  where id_cita =" .$id_cita; 
+                    $sql="SELECT * FROM v_recibo  where id_recibo =" .$id_recibo; 
                 }
                 if (empty($_POST['id_cita'])) {
-                    $sql="SELECT * FROM v_citas  where paciente like '%" .$nombre."%'";
+                    $sql="SELECT * FROM v_recibo where paciente like '%" .$nombre."%'";
                 }
                 if (!empty($_POST['id_cita']) && !empty($_POST['nombre'])) {
-                    $sql="SELECT * FROM v_citas  where id_cita =" .$id_cita." and paciente like '%" .$nombre."%'";
+                    $sql="SELECT * FROM v_recibo where id_recibo =" .$id_recibo." and paciente like '%" .$nombre."%'";
             }
         }
             
@@ -89,40 +89,40 @@
             while($filas=mysqli_fetch_assoc($resultado)){ ///Realiza la consulta de la busqueda cuando se preciono
                 ?>
                 <tr>
-            <td><?php echo $filas['id_cita'] ?></td>
+                <td><?php echo $filas['id_recibo'] ?></td>
             <td><?php echo $filas['paciente'] ?></td>
-            <td><?php echo $filas['telefono'] ?></td>
-            <td><?php echo $filas['doctor'] ?></td>
-            <td><?php echo $filas['fecha_cita'] ?></td>
-            <td><?php echo $filas['hora_cita'] ?></td>
-            <td><?php echo $filas['estado_cita'] ?></td>
+            <td><?php echo $filas['telefono_paciente'] ?></td>
+            <td><?php echo $filas['fecha_generacion'] ?></td>
+            <td><?php echo $filas['hora_generacion'] ?></td>
+            <td><?php echo $filas['costo'] ?></td>
+            <td><?php echo $filas['nombre_suc']?></td>
             <td>
-            <?php echo "<a href='editar_cita.php?id_cita=".$filas['id_cita']."'>Editar</a>"; ?>
+            <?php echo "<a href='editar_recibo.php?id_recibo=".$filas['id_recibo']."'>Editar</a>"; ?>
                 --
-                <?php echo "<a href='eliminar_cita.php?id_cita=".$filas['id_cita']."'>Eliminar</a>"; ?>
+                <?php echo "<a href='eliminar_recibo.php?id_recibo=".$filas['id_recibo']."'>Eliminar</a>"; ?>
             </td>
         </tr>
 
     <?php
             }
         }else{  ///Asi se mostrara cuando entre o le de al boton de mostrar todos
-            $sql="SELECT * from v_receta";
+            $sql="SELECT * from v_recibo";
             
             $resultado=mysqli_query($conexion,$sql);
             while($filas=mysqli_fetch_assoc($resultado)){
         ?>
         <tr>
-            <td><?php echo $filas['id_receta'] ?></td>
+            <td><?php echo $filas['id_recibo'] ?></td>
             <td><?php echo $filas['paciente'] ?></td>
             <td><?php echo $filas['telefono_paciente'] ?></td>
-            <td><?php echo $filas['fecha_cita'] ?></td>
-            <td><?php echo $filas['hora_cita'] ?></td>
-            <td><?php echo $filas['Doctor'] ?></td>
+            <td><?php echo $filas['fecha_generacion'] ?></td>
+            <td><?php echo $filas['hora_generacion'] ?></td>
+            <td><?php echo $filas['costo'] ?></td>
             <td><?php echo $filas['nombre_suc']?></td>
             <td>
-            <?php echo "<a href='editar_receta.php?id_receta=".$filas['id_receta']."'>Editar</a>"; ?>
+            <?php echo "<a href='editar_recibo.php?id_recibo=".$filas['id_recibo']."'>Editar</a>"; ?>
                 --
-                <?php echo "<a href='eliminar_receta.php?id_receta=".$filas['id_receta']."'>Eliminar</a>"; ?>
+                <?php echo "<a href='eliminar_recibo.php?id_recibo=".$filas['id_recibo']."'>Eliminar</a>"; ?>
             </td>
         </tr>
         <?php

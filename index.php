@@ -59,7 +59,7 @@ li a:hover {
                                 <li><a href="index_t_permisos.php">Privilegios</a></li>
 					  <li><a href="index_prueba_lab.php">Puebras De Laboratorio</a></li>
 					  <li><a href="index_recetas.php">Recetas</a></li>
-					  <li><a href="?.html">Recibo</a></li>
+					  <li><a href="index_recibos.php">Recibo</a></li>
 			              <li><a href=""></a></li>
 						</ul>
 		</td>

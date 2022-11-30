@@ -34,10 +34,12 @@
 
         }
         ?>
+        <section class="form">
     <form action="" method="POST">
             <input type="text" name="num_consultorio" placeholder="Numero de consultorio">
             <input type="text" name="ubicacion_consultorio" placeholder="Ubicacion del consultorio">
-            <button type="submit" name="enviar">Enviar</button>
+            <button class="botons" type="submit" name="enviar">Enviar</button>
             <a href="index_consultorio.php">Regresar</a>
+        </section>
     </body>
 </html>

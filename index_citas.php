@@ -14,11 +14,12 @@
         }
     </script>
     <link rel="stylesheet" href="estilos.css">
+    
 </head>
 <body>
     <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
 
-    <table>
+    <table class="table table-dark table-striped">
         <tr><a href="index.php">Regresar</a></tr>
         <tr>
             <th colspan="4"><h1>Citas</h1></th>
@@ -125,6 +126,8 @@
                 <?php echo "<a href='eliminar_cita.php?id_cita=".$filas['id_cita']."'>Eliminar</a>"; ?>
                 --
                 <?php echo "<a href='agregar_receta.php?id_cita=".$filas['id_cita']."'>Generar Receta</a>"; ?>
+                --
+                <?php echo "<a href='agregar_recibo.php?id_cita=".$filas['id_cita']."'>Generar Recibo</a>"; ?>
             </td>
         </tr>
         <?php

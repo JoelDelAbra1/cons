@@ -15,20 +15,19 @@ include("conexion.php");
     if(isset($_POST['enviar'])){ //presiona el boton
         include("conexion.php");    
         
-       $id_cita=$_POST['id_cita'];
+        $id_recibo=$_POST['id_recibo'];
        $costo=$_POST['costo'];
        $fecha_generacion=$_POST['fecha_generacion'];
        $hora_generacion=$_POST['hora_generacion'];
        
 
-        $sql="INSERT INTO recibo(id_cita,costo,fecha_generacion,hora_generacion) 
-        VALUES ( '$id_cita', '$costo'
-        , '$fecha_generacion', '$hora_generacion')";
+        $sql="UPDATE recibo set costo = '$costo', fecha_generacion= '$fecha_generacion',hora_generacion='$hora_generacion' 
+        where id_recibo =".$id_recibo;
         $resultado = mysqli_query($conexion,$sql);
         if($resultado){
             echo" <script languaje = 'JavaScript'>
             alert('Los datos fueron guardados');
-            location.assign('agregar_recibo.php');
+            location.assign('index_recibos.php');
             </script>";
         }else{
             echo" <script languaje = 'JavaScript'>
@@ -39,29 +38,32 @@ include("conexion.php");
         mysqli_close($conexion);
     }else{ //Recuperar los datos y mostrarlos en los input
         
-        $id_cita=$_GET['id_cita'];
-        $sql="select * from v_receta where id_cita= '".$id_cita."'";
+        $id_recibo=$_GET['id_recibo'];
+        $sql="select * from v_recibo where id_recibo= '".$id_recibo."'";
         $resultado = mysqli_query($conexion,$sql);
 
         $fila= mysqli_fetch_assoc($resultado);
         date_default_timezone_set('America/Mexico_City');
         
-        
-        $fecha_generacion= date('d/m/y');
-        $hora_generacion= date('G:i:s ');
+        /// cambiar
+        $id_recibo= $fila["id_recibo"];
+        $fecha_generacion= $fila["fecha_generacion"];
+        $hora_generacion= $fila["hora_generacion"];
         $paciente= $fila["paciente"];
         $telefono_paciente= $fila["telefono_paciente"];
         $nombre_suc= $fila["nombre_suc"];
         $direccion_suc= $fila["direccion_suc"];
         $telefono_suc= $fila["telefono_suc"];
+        $costo= $fila["costo"];
         mysqli_close($conexion);
     }
     ?> 
     
 <form action="" method="POST"> 
     <label ></label>
-    <input type="hidden" name="id_cita" value="<?php echo $id_cita; ?>">
+    
     <h2>Sucursal</h2>
+    <input type="text" name="id_recibo" value="<?php echo $id_recibo; ?>">
     <label >Sucursal:</label>
         <input type="text" name="nombre_suc" value="<?php echo $nombre_suc; ?>">
         <label >Dirrección:</label>
@@ -80,7 +82,6 @@ include("conexion.php");
         <label >Fecha:</label>
         <input type="text" name="fecha_generacion" value="<?php echo $fecha_generacion; ?>">
 
-<input type="hidden" name="id_cita" value="<?php echo $id_cita; ?>">
        
         
         
@@ -90,7 +91,7 @@ include("conexion.php");
         
      <h2>Cuerpo del Recibo</h2>
      <label for="">Se pagaran: </label>
-      <input type="text" name="costo" placeholder="costo" >
+      <input type="text" name="costo" placeholder="costo" value="<?php echo $costo; ?>">
       
 
       

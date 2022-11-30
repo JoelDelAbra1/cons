@@ -14,13 +14,14 @@ include("conexion.php");
 <body>
     <?php
     if(isset($_POST['enviar'])){
+
         $nombre_paciente = $_POST['nombre_paciente'];
-        $apellido_paterno = $_POST['apellido_paterno'];
-        $apellido_materno = $_POST['apellido_materno'];
+        $apellido_paterno = $_POST['Apellido_paterno'];
+        $apellido_materno = $_POST['Apellido_materno'];
         $colonia_paciente = $_POST['colonia_paciente'];
         $calle_paciente = $_POST['calle_paciente'];
-        $telefono_paciente = $_POST['telefono_paciente'];
-$id_paciente= $_POST['Id_paciente'];
+        $telefono_paciente = $_POST['Telefono_paciente'];
+$id_paciente= $_POST['id_paciente'];
       
     ////////////////////////////no jalaaa
         $sql="update paciente set nombre_paciente='".$nombre_paciente."',apellido_paterno='".$apellido_paterno."' where id_paciente='".$id_paciente."'";
@@ -44,7 +45,8 @@ $id_paciente= $_POST['Id_paciente'];
         $resultado = mysqli_query($conexion,$sql);
 
         $fila= mysqli_fetch_assoc($resultado);
-         
+        
+        $id_paciente= $fila["id_paciente"];
         $nombre_paciente= $fila["nombre_paciente"];
         $apellido_paterno=$fila["apellido_paterno"];
         $apellido_materno=$fila["apellido_materno"];

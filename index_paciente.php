@@ -40,7 +40,7 @@ include("conexion.php");
                     <input type="submit" name="enviar" value="BUSCAR">
                 </td>
                 <td>
-                    <a href="index.php">Mostrar todos</a>
+                    <a href="index_paciente.php">Mostrar todos</a>
                 </td>
                 <td><a href="agregar_pac.php">Nuevo</a></td>
             </tr>
