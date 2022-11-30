@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Citas</title>
+    <title>Recetas</title>
     <script type="text/javascript">
         function confirmar(){
             return confirm('Estas seguro de eliminar');
@@ -21,7 +21,7 @@
     <table>
         <tr><a href="index.php">Regresar</a></tr>
         <tr>
-            <th colspan="4"><h1>Citas</h1></th>
+            <th colspan="4"><h1>Recetas</h1></th>
         </tr>
         <tr>
             <td>
@@ -36,9 +36,8 @@
                 <input type="submit" name="enviar" value =  "BUSCAR">
             </td>
             <td>
-                <a href="index_citas.php">Mostrar todos</a>
+                <a href="index_recetas.php">Mostrar todos</a>
             </td>
-            
            
             
         </tr>
@@ -57,8 +56,8 @@
             <th>Fecha</th>
             <th>Hora</th>
             <th>Doctor</th>
-            <th>Estado</th>
-            <th>Acciones</th>
+           
+            <th>Sucursal</th>
         </tr>
       </thead>
       <tbody>
@@ -107,22 +106,22 @@
     <?php
             }
         }else{  ///Asi se mostrara cuando entre o le de al boton de mostrar todos
-            $sql="select * from v_citas";
+            $sql="select * from v_receta";
             $resultado=mysqli_query($conexion,$sql);
             while($filas=mysqli_fetch_assoc($resultado)){
         ?>
         <tr>
-            <td><?php echo $filas['id_cita'] ?></td>
+            <td><?php echo $filas['id_receta'] ?></td>
             <td><?php echo $filas['paciente'] ?></td>
             <td><?php echo $filas['telefono_paciente'] ?></td>
             <td><?php echo $filas['fecha_cita'] ?></td>
             <td><?php echo $filas['hora_cita'] ?></td>
-            <td><?php echo $filas['doctor'] ?></td>
-            <td><?php echo $filas['estado_cita']?></td>
+            <td><?php echo $filas['Doctor'] ?></td>
+            <td><?php echo $filas['nombre_suc']?></td>
             <td>
             <?php echo "<a href='editar_cita.php?id_cita=".$filas['id_cita']."'>Editar</a>"; ?>
                 --
-                <?php echo "<a href='eliminar_cita.php?id_cita=".$filas['id_cita']."'>Eliminar</a>"; ?>
+                <?php echo "<a href='eliminar_receta.php?id_receta=".$filas['id_receta']."'>Eliminar</a>"; ?>
                 --
                 <?php echo "<a href='agregar_receta.php?id_cita=".$filas['id_cita']."'>Generar Receta</a>"; ?>
             </td>

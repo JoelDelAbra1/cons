@@ -24,9 +24,10 @@ include("conexion.php");
             
         }else{
         
-        $sql="update sucursal set direccion_suc = '$direccion_suc', nombre_suc = '$nombre_suc',
-         telefono_suc = '$telefono_suc' where id_sucursal = 1";
+        $sql=" update sucursal set direccion_suc = '$direccion_suc', nombre_suc = '$nombre_suc',
+         telefono_suc = '$telefono_suc' where id_sucursal =".$id_sucursal;
         $resultado = mysqli_query($conexion,$sql);
+
         if($resultado){
             echo" <script languaje = 'JavaScript'>
             alert('Los datos fueron guardados');
@@ -45,7 +46,8 @@ include("conexion.php");
         $id_sucursal=$_GET['id_sucursal'];
         $sql='SELECT * FROM sucursal WHERE id_sucursal="'.$id_sucursal.'"';
         $resultado=mysqli_query($conexion,$sql);
-        $fila=(mysqli_fetch_assoc($resultado));   
+        $fila=(mysqli_fetch_assoc($resultado));  
+        $id_sucursal=$fila['id_sucursal']; 
         $nombre_suc= $fila["nombre_suc"];
         $telefono_suc= $fila["telefono_suc"];
         $direccion_suc=$fila["direccion_suc"];
@@ -54,8 +56,8 @@ include("conexion.php");
     
     ?>
 <form action="" method="POST">
-<input type="hidden" name="id_sucursal" placeholder="Id Sucursal" value="<?php /// Se debe agregar oara que lo actualiza
-        if(isset($telefono_suc)) echo $telefono_suc?>">
+<input type="text" name="id_sucursal" placeholder="Id Sucursal" value="<?php /// Se debe agregar oara que lo actualiza
+        if(isset($id_sucursal)) echo $id_sucursal?>">
 <input type="text" name="nombre_suc" placeholder="Nombre Sucursal" value="<?php
         if(isset($nombre_suc)) echo $nombre_suc?>">
         <input type="tel" name="telefono_suc" placeholder="Teledono Sucursal" value="<?php

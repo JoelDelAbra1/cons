@@ -11,6 +11,7 @@ include("conexion.php");
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+    
     <?php
     if(isset($_POST['enviar'])){ //presiona el boton
         include("conexion.php");    
@@ -76,5 +77,6 @@ include("conexion.php");
     
         <button type="submit" name="enviar">Enviar</button>
         <a href="index.php">Regresar</a>
+        
 </body>
 </html>

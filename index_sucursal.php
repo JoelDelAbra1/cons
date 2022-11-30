@@ -19,6 +19,7 @@
     <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
 
     <table>
+    <tr><a href="index.php">Regresar</a></tr>
         <tr>
             <th colspan="5"><h1>Lista</h1></th>
         </tr>
