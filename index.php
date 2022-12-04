@@ -1,5 +1,10 @@
 <?php
  include("conexion.php");
+session_start();
+
+$permiso_s =$_SESSION['permiso_id'];
+
+
 ?>
 <html>
   <head>
@@ -48,24 +53,50 @@ li a:hover {
       </tr>
       <tr>
           <td></td>
+          <?php
+          
+        
+        if ($permiso_s== 1) {
+          echo '
           <td><table><tr><td><ul class="nav">
 				        <li><a href="Inicio.html">Inicio</a></li>
-                                <li><a href="index_citas.php">Cita</a></li>
-				        <li><a href="index_consultorio.php">Consultorios</a>
+                                <li><a href="citas/index_citas.php">Cita</a></li>
+				        <li><a href="consultorio/index_consultorio.php">Consultorios</a>
 		                    <li><a href=".html">Doctores</a>
-				        <li><a href="index_emp.php">Empleados</a></li>
+				        <li><a href="empleado/index_emp.php">Empleados</a></li>
                                 <li><a href="?.html">Historial</a></li>
-                                <li><a href="index_paciente.php">Pacientes</a></li>
-                                <li><a href="index_t_permisos.php">Privilegios</a></li>
-					  <li><a href="index_prueba_lab.php">Puebras De Laboratorio</a></li>
-					  <li><a href="index_recetas.php">Recetas</a></li>
-					  <li><a href="index_recibos.php">Recibo</a></li>
+                                <li><a href="paciente/index_paciente.php">Pacientes</a></li>
+                                <li><a href="permisos/index_t_permisos.php">Privilegios</a></li>
+					  <li><a href="pruebas_lab/index_prueba_lab.php">Puebras De Laboratorio</a></li>
+					  <li><a href="receta/index_recetas.php">Recetas</a></li>
+					  <li><a href="recibo/index_recibo.php">Recibo</a></li>
 			              <li><a href=""></a></li>
 						</ul>
 		</td>
 		<td width="100%" bgcolor="20F7BC" align="center"><font color="black" size="6"> Salvando </font><font color="blue" size="6"> Regios</font><br>
 			
 		</td>
- </table>
+ </table> ';
+          } else { // doctor
+
+            echo '
+          <td><table><tr><td><ul class="nav">';
+				        
+                     echo "<li><a href='citas/index_citas.php'>Cita</a></li>
+                     <li><a href='consultorio/index_consultorio.php'>Consultorios</a>                
+                     <li><a href='paciente/index_paciente.php'>Pacientes</a></li>
+					           <li><a href='receta/index_recetas.php'>Recetas</a></li>
+					           <li><a href='recibo/index_recibo.php'>Recibo</a></li> 
+                    <li><a href='cerrarSesion.php'>Cerrar Sesion</a></li>
+		</td>
+		<td width='100%' bgcolor='20F7BC' align='center'><font color='black' size='6'> Salvando </font><font color='blue' size='6'> Regios</font><br>
+			
+		</td>
+ </table> "; 
+          }
+          
+          
+          
+          ?>
    </body>
 </html>

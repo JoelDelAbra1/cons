@@ -3,6 +3,10 @@ table {
   width: 100%;
 }
 
+placeholder{
+  text-align: center;
+}
+
 th,td {
   text-align: center;
   padding: 8px;
@@ -13,12 +17,12 @@ tr:nth-child(even){
 }
 
 th {
-  background-color: #4CAF50;
+  background-color: #1cdccc;
   color: white;
 }
   
   a:link, a:visited {
-    background-color: blue;
+    background-color: rgb(255, 3, 234);
     color: white;
     padding: 14px 25px;
     text-align: center;
@@ -36,17 +40,19 @@ th {
     text-align: center;
   }
 
+ 
+
   *{
     margin: o;
     padding: 0;
     box-sizing: border-box;
   }
   .form{
-    width: 400px;
-    background: gray ;
+    width: 600px;
+    background: #1cdccc ;
     padding: 30px;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 10px;
     color: white;
     box-shadow: 7px 13px 37px #000;
   }
@@ -61,15 +67,22 @@ th {
     font-size: 18px;
   }
 
-  .form a{
+  .form a:link, a:visited, button {
+    background-color: rgb(255, 3, 234);
     color: white;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
     
+    border-radius: 5px;
+    width: 100%;
   }
+  
 
-  .form .botons {
+.botons {
     width: 100%;
     border: none;
-    background: #1f53c5;
+    background: #0e121a;
     padding: 12px;
     color: white;
     margin: 16px 0;
@@ -87,9 +100,32 @@ th {
   }
   
   
-  input[type=submit] {
+  input[type=date] {
+    width: 49%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    align-items: center;
+  }
+
+  input[type=time] {
+    width: 49%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    align-items: center;
+    justify-items: center;
+    box-sizing: border-box;
+  }
+
+  button {
     width: 100%;
-    background-color: #4CAF50;
+    background-color:rgb(255, 3, 234);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -98,7 +134,7 @@ th {
     cursor: pointer;
   }
   
-  input[type=submit]:hover {
-    background-color: #45a049;
+  button:hover {
+    background-color:  rgb(255, 3, 234);
   }
   
